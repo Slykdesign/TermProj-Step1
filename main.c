@@ -1,5 +1,4 @@
 #include "vdi.h"
-#include "ext2.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
