@@ -26,7 +26,7 @@ int main() {
     char buffer[512];
     vdiSeek(vdi, 0, SEEK_SET);
     vdiRead(vdi, buffer, 512);
-    printf("Read first sector:\n%.*s\n", 512, buffer);
+    printf("%.*s\n", 512, buffer);
 
     vdiClose(vdi);
     return 0;
