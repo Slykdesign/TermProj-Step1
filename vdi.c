@@ -133,7 +133,7 @@ off_t vdiTranslate(VDIFile *vdi, off_t logicalOffset) {
     return (off_t)(physicalPage * vdi->pageSize + offsetInPage);
 }
 
-void displayVDIHeader(VDIFile *vdi) {
+void displayVDIHeader(const VDIFile *vdi) {
     printf("      Image name: [<<< Oracle VM VirtualBox Disk Image >>>        ]\n");
     printf("       Signature: 0x%x\n", *(uint32_t *)(vdi->header));
     printf("         Version: %d.%d\n", vdi->header[4], vdi->header[5]);
@@ -173,13 +173,18 @@ void displayVDIHeader(VDIFile *vdi) {
 }
 
 void displayVDITranslationMap(VDIFile *vdi) {
-    displayBuffer((uint8_t *)vdi->map, vdi->totalPages * sizeof(uint32_t), 0);
-    displayBuffer((uint8_t *)vdi->map, vdi->totalPages * sizeof(uint32_t), 0x100);
-}
-
-void displayMBR(VDIFile *vdi) {
     uint8_t mbr[512];
     lseek(vdi->fd, 0, SEEK_SET);
     read(vdi->fd, mbr, 512);
     displayBuffer(mbr, 512, 0x0);
+}
+
+void displayMBR(VDIFile *vdi) {
+    uint8_t mbr[512];
+    // Seek to logical offset 0 in the virtual disk
+    vdiSeek(vdi, 0, SEEK_SET);
+    // Read 512 bytes from the virtual disk
+    vdiRead(vdi, mbr, sizeof(mbr));
+    // Display the contents of the MBR buffer
+    displayBuffer(mbr, sizeof(mbr), 0);
 }

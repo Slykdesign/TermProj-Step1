@@ -1,10 +1,7 @@
 #include "vdi.h"
 #include <stdio.h>
-#include <stdlib.h>
 #include <stdint.h>
-#include <fcntl.h>
 #include <ctype.h>
-#include <time.h>
 
 // Function prototypes
 void displayBufferPage(uint8_t *buf, uint32_t count, uint32_t skip, uint64_t offset);
