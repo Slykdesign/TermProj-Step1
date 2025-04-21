@@ -19,7 +19,7 @@ ssize_t vdiRead(VDIFile *vdi, void *buf, size_t count);
 ssize_t vdiWrite(VDIFile *vdi, void *buf, size_t count);
 off_t vdiSeek(VDIFile *vdi, off_t offset, int anchor);
 off_t vdiTranslate(VDIFile *vdi, off_t logicalOffset);
-void displayVDIHeader(const VDIFile *vdi);
+void displayVDIHeader(VDIFile *vdi);
 void displayVDITranslationMap(VDIFile *vdi);
 void displayMBR(VDIFile *vdi);
 void displayBuffer(uint8_t *buf, uint32_t count, uint64_t offset);
