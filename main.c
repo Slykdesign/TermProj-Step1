@@ -14,10 +14,10 @@ int main() {
     printf("Dump of VDI header:\n");
     displayVDIHeader(vdi);
 
-    printf("\nTranslation map:\n");
+    printf("Translation map:\n");
     displayVDITranslationMap(vdi);
 
-    printf("\nPartition table from Master Boot Record:\n");
+    printf("Partition table from Master Boot Record:\n");
     displayMBR(vdi);
 
     char buffer[512];
@@ -35,8 +35,8 @@ void displayBufferPage(uint8_t *buf, uint32_t count, uint32_t skip, uint64_t off
     printf("Offset: 0x%lx\n", offset);
 
     // Header line
-    printf("00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f 0...4...8...c...\n");
-    printf("+-----------------------------------------------+ +----------------+\n");
+    printf("   00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f   0...4...8...c...\n");
+    printf("  +-----------------------------------------------+ +----------------+\n");
 
     for (int i = 0; i < 16; i++) {  // 16 lines of 16 bytes
         printf("%02x|", i*16);
@@ -64,7 +64,7 @@ void displayBufferPage(uint8_t *buf, uint32_t count, uint32_t skip, uint64_t off
         }
         printf("|\n");
     }
-    printf("+-----------------------------------------------+ +----------------+\n\n");
+    printf("  +------------------------------------------------+ +----------------+\n\n");
 }
 
 void displayBuffer(uint8_t *buf, uint32_t count, uint64_t offset) {
